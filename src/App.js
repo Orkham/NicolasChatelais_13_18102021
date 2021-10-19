@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import { Route, Switch } from 'react-router'
+import WelcomePage from './pages/Welcome'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Switch>
+        <Route path="/">
+          <WelcomePage />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
+/* async function fetchDatas(){
+  const headers = {
+    'Content-type': 'application/json',
+  }
+  const bodyRequest = JSON.stringify({
+    "email": "tony@stark.com",
+    "password": "password123"
+  })
+  const response = await fetch('http://localhost:3001/api/v1/user/login', {
+    method: 'POST',
+    body: bodyRequest,
+    headers: headers
+  })
+  const userDatas = await response.json()
+  console.log(userDatas.body.token)
+}
+fetchDatas() */
