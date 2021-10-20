@@ -2,13 +2,21 @@ import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { Route, Switch } from 'react-router'
 import WelcomePage from './pages/Welcome'
+import SignInPage from './pages/SignInPage'
+import UserPage from './pages/UserPage'
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/">
+        <Route exact path="/">
           <WelcomePage />
+        </Route>
+        <Route path="/sign-in">
+          <SignInPage />
+        </Route>
+        <Route path="/user">
+          <UserPage />
         </Route>
       </Switch>
     </BrowserRouter>
