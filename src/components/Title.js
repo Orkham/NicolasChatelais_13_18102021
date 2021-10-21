@@ -23,7 +23,7 @@ export default function Title() {
       <h1>
         Welcome back
         <br />
-        Tony Jarvis!
+        Tony Stark!
       </h1>
       <button className="edit-button">Edit Name</button>
     </StyledHeader>

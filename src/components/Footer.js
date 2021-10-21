@@ -10,7 +10,7 @@ const StyledFooter = styled.footer`
 export default function Footer() {
   return (
     <StyledFooter>
-      <p class="footer-text">Copyright 2020 Argent Bank</p>
+      <p className="footer-text">Copyright 2020 Argent Bank</p>
     </StyledFooter>
   )
 }

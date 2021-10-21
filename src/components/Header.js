@@ -50,7 +50,7 @@ export default function Header() {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       <div>
-        <Link className="main-nav-item" to="/">
+        <Link className="main-nav-item" to="/sign-in">
           <FontAwesomeIcon icon={faUserCircle}></FontAwesomeIcon>
           Sign In
         </Link>

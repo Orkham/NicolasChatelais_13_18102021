@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import { createGlobalStyle } from 'styled-components'
 
+
 const GlobalStyle = createGlobalStyle`
     
 html {
@@ -20,6 +21,8 @@ body {
   min-height: 100vh;
 }
 `
+
+
 
 ReactDOM.render(
   <React.StrictMode>
