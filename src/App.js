@@ -10,17 +10,22 @@ import * as ACTIONS from './actions/actions.js'
 
 /*STORE*/
 
-let store = createStore(reducer)
+export let store = createStore(reducer)
 //console.log(store)
 /* store.subscribe(function () {
   console.log(store.getState())
 }) */
 
 //store.dispatch(ACTIONS.testClick)
-store.dispatch(ACTIONS.signIn)
+//store.dispatch(ACTIONS.signIn)
 
-function testButton(){
+function testButton() {
   store.dispatch(ACTIONS.testClick)
+  console.log(store.getState())
+}
+function logIn() {
+  store.dispatch(ACTIONS.signIn)
+  console.log(store.getState())
 }
 
 function App() {
@@ -30,9 +35,10 @@ function App() {
         <Route exact path="/">
           <WelcomePage />
           <button onClick={testButton}>Test</button>
+          <button onClick={logIn}>Connexion</button>
         </Route>
         <Route path="/sign-in">
-          <SignInPage />
+          <SignInPage store={store} />
         </Route>
         <Route path="/user">
           <UserPage />

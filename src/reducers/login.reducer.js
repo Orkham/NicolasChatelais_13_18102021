@@ -6,16 +6,13 @@ const stateInit = {
 }
 
 export default function reducer(state = stateInit, action) {
-  let newState
+  
   if (action.type === ACTIONS.TEST) {
-    console.log('test')
-    newState = state
+    return { ...state, bonjour: !state.bonjour }
   } else if (action.type === ACTIONS.SIGN_IN) {
-    //console.log('sign-in')
-    newState = state
+    return { ...state, connected: !state.connected }
   } else {
-    newState = state
+    return state
   }
-  //console.log(action, newState)
-  return newState
+  
 }

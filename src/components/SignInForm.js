@@ -2,6 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { store } from '../App'
+import * as ACTIONS from '../actions/actions.js'
+import Input from './login/input.js'
 
 const StyledSignInForm = styled.div`
   .bg-dark {
@@ -54,7 +57,21 @@ const StyledSignInForm = styled.div`
   }
 `
 
-export default function SignInForm() {
+function logIn(e) {
+  e.preventDefault()
+  store.dispatch(ACTIONS.signIn)
+  console.log(store.getState())
+  let usernameValue = document.getElementById('username')
+  let passwordValue = document.getElementById('password')
+  /* console.log(usernameValue.value)
+  console.log(passwordValue.value) */
+  if (usernameValue.value === '123' && passwordValue.value === '123') {
+    console.log('connecté !')
+  }
+}
+
+export default function SignInForm(props) {
+  //console.log(props.store.getState())
   return (
     <StyledSignInForm>
       <main className="bg-dark">
@@ -65,24 +82,27 @@ export default function SignInForm() {
           ></FontAwesomeIcon>
           <h1>Sign In</h1>
           <form>
-            <div className="input-wrapper">
-              <label for="username">Username</label>
-              <input type="text" id="username" />
-            </div>
-            <div className="input-wrapper">
-              <label for="password">Password</label>
-              <input type="password" id="password" />
-            </div>
+            <Input
+              htmlForValue="username"
+              type="text"
+              id="username"
+              labelTitle="Username"
+            />
+            <Input
+              htmlForValue="password"
+              type="password"
+              id="password"
+              labelTitle="Password"
+            />
+
             <div className="input-remember">
               <input type="checkbox" id="remember-me" />
-              <label for="remember-me">Remember me</label>
+              <label htmlFor="remember-me">Remember me</label>
             </div>
-            {/* <!-- PLACEHOLDER DUE TO STATIC SITE --> */}
-            <a href="./user.html" className="sign-in-button">
+
+            <button className="sign-in-button" onClick={logIn}>
               Sign In
-            </a>
-            {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
-            {/* <!-- <button className="sign-in-button">Sign In</button> --> */}
+            </button>
           </form>
         </section>
       </main>

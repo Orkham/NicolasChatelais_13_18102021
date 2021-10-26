@@ -2,11 +2,11 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import SignInForm from '../components/SignInForm'
 
-export default function SignInPage() {
+export default function SignInPage(props) {
   return (
     <div>
       <Header />
-      <SignInForm />
+      <SignInForm store={props.store} />
       <Footer />
     </div>
   )
