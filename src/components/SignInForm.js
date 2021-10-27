@@ -57,21 +57,45 @@ const StyledSignInForm = styled.div`
   }
 `
 
+
+
+async function fetchDatas(email, password) {
+  const headers = {
+    'Content-type': 'application/json',
+  }
+  const bodyRequest = JSON.stringify({
+    email: email,
+    password: password,
+  })
+  const response = await fetch('http://localhost:3001/api/v1/user/login', {
+    method: 'POST',
+    body: bodyRequest,
+    headers: headers,
+  })
+  try {
+    const userDatas = await response.json()
+    console.log('tout va bien Tony !', userDatas.body.token)
+  } catch {
+    console.log('Vous êtes un nain posteur ! ')
+  }
+}
+
 function logIn(e) {
+  const usernameValue = document.getElementById('username').value
+  const passwordValue = document.getElementById('password').value
   e.preventDefault()
   store.dispatch(ACTIONS.signIn)
   console.log(store.getState())
-  let usernameValue = document.getElementById('username')
-  let passwordValue = document.getElementById('password')
-  /* console.log(usernameValue.value)
-  console.log(passwordValue.value) */
-  if (usernameValue.value === '123' && passwordValue.value === '123') {
-    console.log('connecté !')
+  try {
+    fetchDatas(usernameValue, passwordValue)
+  } catch {
+    console.log('Vous êtes un nain posteur ! ')
   }
 }
 
 export default function SignInForm(props) {
   //console.log(props.store.getState())
+
   return (
     <StyledSignInForm>
       <main className="bg-dark">

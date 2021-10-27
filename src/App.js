@@ -6,27 +6,12 @@ import SignInPage from './pages/SignInPage'
 import UserPage from './pages/UserPage'
 import { createStore } from 'redux'
 import reducer from './reducers/login.reducer'
-import * as ACTIONS from './actions/actions.js'
+/* import * as ACTIONS from './actions/actions.js' */
 
 /*STORE*/
 
 export let store = createStore(reducer)
 //console.log(store)
-/* store.subscribe(function () {
-  console.log(store.getState())
-}) */
-
-//store.dispatch(ACTIONS.testClick)
-//store.dispatch(ACTIONS.signIn)
-
-function testButton() {
-  store.dispatch(ACTIONS.testClick)
-  console.log(store.getState())
-}
-function logIn() {
-  store.dispatch(ACTIONS.signIn)
-  console.log(store.getState())
-}
 
 function App() {
   return (
@@ -34,8 +19,6 @@ function App() {
       <Switch>
         <Route exact path="/">
           <WelcomePage />
-          <button onClick={testButton}>Test</button>
-          <button onClick={logIn}>Connexion</button>
         </Route>
         <Route path="/sign-in">
           <SignInPage store={store} />
@@ -50,21 +33,3 @@ function App() {
 
 export default App
 
-/* async function fetchDatas() {
-  const headers = {
-    'Content-type': 'application/json',
-  }
-  const bodyRequest = JSON.stringify({
-    email: 'tony@stark.com',
-    password: 'password123',
-  })
-  const response = await fetch('http://localhost:3001/api/v1/user/login', {
-    method: 'POST',
-    body: bodyRequest,
-    headers: headers,
-  })
-  const userDatas = await response.json()
-  console.log(userDatas.body.token)
-}
-fetchDatas() 
- */
