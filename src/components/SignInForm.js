@@ -5,6 +5,8 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { store } from '../App'
 import * as ACTIONS from '../actions/actions.js'
 import Input from './login/input.js'
+import LogInButton from './login/LoginButton'
+import { fetchDatas } from '../services/service.fetch'
 
 const StyledSignInForm = styled.div`
   .bg-dark {
@@ -57,40 +59,13 @@ const StyledSignInForm = styled.div`
   }
 `
 
-
-
-async function fetchDatas(email, password) {
-  const headers = {
-    'Content-type': 'application/json',
-  }
-  const bodyRequest = JSON.stringify({
-    email: email,
-    password: password,
-  })
-  const response = await fetch('http://localhost:3001/api/v1/user/login', {
-    method: 'POST',
-    body: bodyRequest,
-    headers: headers,
-  })
-  try {
-    const userDatas = await response.json()
-    console.log('tout va bien Tony !', userDatas.body.token)
-  } catch {
-    console.log('Vous êtes un nain posteur ! ')
-  }
-}
-
 function logIn(e) {
   const usernameValue = document.getElementById('username').value
   const passwordValue = document.getElementById('password').value
   e.preventDefault()
   store.dispatch(ACTIONS.signIn)
   console.log(store.getState())
-  try {
-    fetchDatas(usernameValue, passwordValue)
-  } catch {
-    console.log('Vous êtes un nain posteur ! ')
-  }
+  fetchDatas(usernameValue, passwordValue)
 }
 
 export default function SignInForm(props) {
@@ -127,6 +102,7 @@ export default function SignInForm(props) {
             <button className="sign-in-button" onClick={logIn}>
               Sign In
             </button>
+            <LogInButton />
           </form>
         </section>
       </main>

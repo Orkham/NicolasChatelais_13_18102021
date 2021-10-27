@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-import App from './App'
+import App, { store } from './App'
 import { createGlobalStyle } from 'styled-components'
-
+import { Provider } from 'react-redux'
 
 const GlobalStyle = createGlobalStyle`
     
@@ -22,12 +22,12 @@ body {
 }
 `
 
-
-
 ReactDOM.render(
-  <React.StrictMode>
-    <GlobalStyle />
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <GlobalStyle />
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 )
