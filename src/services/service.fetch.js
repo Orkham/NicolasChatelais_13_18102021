@@ -1,4 +1,7 @@
-export async function fetchDatas(email, password) {
+import { SIGN_IN } from '../actions/actions'
+import { store } from '../App'
+
+export async function checkUserId(email, password) {
   const headers = {
     'Content-type': 'application/json',
   }
@@ -14,7 +17,8 @@ export async function fetchDatas(email, password) {
   try {
     const userDatas = await response.json()
     console.log('Token : ', userDatas.body.token)
+    store.dispatch(SIGN_IN)
   } catch {
-    console.log('Vous êtes un nain posteur ! ')
+    alert('Mot de passe ou adresse mail incorrect')
   }
 }

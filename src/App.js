@@ -10,8 +10,15 @@ import reducer from './reducers/login.reducer'
 
 /*STORE*/
 
-export let store = createStore(reducer)
-//console.log(store)
+export const stateInit = {
+  connected: false,
+  token: '',
+  firstName: '',
+  lastName: '',
+  email: '',
+}
+
+export let store = createStore(reducer, stateInit)
 
 function App() {
   return (

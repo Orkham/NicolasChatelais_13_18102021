@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
-import { store } from '../App'
-import * as ACTIONS from '../actions/actions.js'
+//import { store } from '../App'
+//import * as ACTIONS from '../actions/actions.js'
 import Input from './login/input.js'
 import LogInButton from './login/LoginButton'
-import { fetchDatas } from '../services/service.fetch'
+//import { fetchDatas } from '../services/service.fetch'
 
 const StyledSignInForm = styled.div`
   .bg-dark {
@@ -59,14 +59,14 @@ const StyledSignInForm = styled.div`
   }
 `
 
-function logIn(e) {
+/* function logIn(e) {
   const usernameValue = document.getElementById('username').value
   const passwordValue = document.getElementById('password').value
   e.preventDefault()
   store.dispatch(ACTIONS.signIn)
   console.log(store.getState())
   fetchDatas(usernameValue, passwordValue)
-}
+} */
 
 export default function SignInForm(props) {
   //console.log(props.store.getState())
@@ -99,9 +99,6 @@ export default function SignInForm(props) {
               <label htmlFor="remember-me">Remember me</label>
             </div>
 
-            <button className="sign-in-button" onClick={logIn}>
-              Sign In
-            </button>
             <LogInButton />
           </form>
         </section>

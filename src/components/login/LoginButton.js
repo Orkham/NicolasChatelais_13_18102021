@@ -1,26 +1,28 @@
-import { useDispatch } from 'react-redux'
-//import { store } from '../../App'
-import { fetchDatas } from '../../services/service.fetch'
+import { checkUserId } from '../../services/service.fetch'
+import { store } from '../../App'
+/*import { useDispatch } from 'react-redux'
+import { SIGN_IN } from '../../actions/actions' */
 
-function logIn(e) {
+import { Link } from 'react-router-dom'
+
+function logIn() {
   const usernameValue = document.getElementById('username').value
   const passwordValue = document.getElementById('password').value
-  fetchDatas(usernameValue, passwordValue)
+  checkUserId(usernameValue, passwordValue)
 }
 
 export default function LogInButton() {
-  const dispatch = useDispatch()
-
+  console.log(store.getState().connected)
   return (
-    <button
+    <Link
       className="sign-in-button"
       onClick={(e) => {
         e.preventDefault()
         logIn()
-        dispatch({ type: 'ACTIONS.SIGN_IN' })
       }}
+      to="/user"
     >
       Sign In
-    </button>
+    </Link>
   )
 }

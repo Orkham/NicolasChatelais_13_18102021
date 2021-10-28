@@ -1,16 +1,14 @@
-import * as ACTIONS from '../actions/actions_types.js'
-
-const stateInit = {
-  connected: false,
-  firstName: '',
-  lastName: '',
-  email: '',
-}
+import { stateInit } from '../App'
 
 export default function reducer(state = stateInit, action) {
-  if (action.type === ACTIONS.SIGN_IN) {
-    return { ...state, connected: !state.connected }
-  } else {
-    return state
+  switch (action.type) {
+    case 'SIGN_IN':
+      //console.log('connect')
+      return {
+        ...state,
+        connected: true,
+      }
+    default:
+      return state
   }
 }

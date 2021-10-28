@@ -1,5 +1,3 @@
-import * as ACTIONS from './actions_types.js'
-
-export let signIn = {
-  type: ACTIONS.SIGN_IN,
+export const SIGN_IN = {
+  type: 'SIGN_IN',
 }
