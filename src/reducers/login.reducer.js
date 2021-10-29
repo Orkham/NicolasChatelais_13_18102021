@@ -1,12 +1,19 @@
-import { stateInit } from '../App'
+const stateInit = {
+  connected: false,
+  token: '',
+}
 
-export default function reducer(state = stateInit, action) {
+export default function loginReducer(state = stateInit, action) {
   switch (action.type) {
     case 'SIGN_IN':
-      //console.log('connect')
       return {
-        ...state,
         connected: true,
+        token: action.payload.token,
+      }
+    case 'SIGN_OUT':
+      return {
+        connected: false,
+        token: '',
       }
     default:
       return state

@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { store } from '../App'
+import { useSelector } from 'react-redux'
+import { SIGN_OUT, DELETE_USER_DATAS } from '../actions/actions'
+import { useHistory } from 'react-router-dom'
 
 const StyledHeader = styled.nav`
   display: flex;
@@ -39,6 +43,10 @@ const StyledHeader = styled.nav`
 `
 
 export default function Header() {
+  //console.log(store.getState())
+  const isUserLoggedIn = useSelector((state) => state.loginReducer.connected)
+  //console.log(isUserLoggedIn)
+  let history = useHistory()
   return (
     <StyledHeader className="main-nav">
       <Link className="main-nav-logo" to="/">
@@ -50,10 +58,25 @@ export default function Header() {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       <div>
-        <Link className="main-nav-item" to="/sign-in">
-          <FontAwesomeIcon icon={faUserCircle}></FontAwesomeIcon>
-          Sign In
-        </Link>
+        {!isUserLoggedIn ? (
+          <Link className="main-nav-item" to="/sign-in">
+            <FontAwesomeIcon icon={faUserCircle}></FontAwesomeIcon>
+            Sign In
+          </Link>
+        ) : (
+          <a
+            className="main-nav-item"
+            onClick={() => {
+              store.dispatch(SIGN_OUT)
+              store.dispatch(DELETE_USER_DATAS)
+              history.push('/')
+            }}
+            href="."
+          >
+            <FontAwesomeIcon icon={faUserCircle}></FontAwesomeIcon>
+            Sign Out
+          </a>
+        )}
       </div>
     </StyledHeader>
   )

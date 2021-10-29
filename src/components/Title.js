@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 const StyledHeader = styled.header`
@@ -18,12 +19,14 @@ const StyledHeader = styled.header`
 `
 
 export default function Title() {
+  const userFirstName = useSelector((state) => state.userReducer.firstName)
+  const userLastName = useSelector((state) => state.userReducer.lastName)
   return (
     <StyledHeader>
       <h1>
         Welcome back
         <br />
-        Tony Stark!
+        {userFirstName} {userLastName} !
       </h1>
       <button className="edit-button">Edit Name</button>
     </StyledHeader>

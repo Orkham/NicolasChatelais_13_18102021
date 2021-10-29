@@ -4,21 +4,21 @@ import { Route, Switch } from 'react-router'
 import WelcomePage from './pages/Welcome'
 import SignInPage from './pages/SignInPage'
 import UserPage from './pages/UserPage'
-import { createStore } from 'redux'
+import { combineReducers, createStore } from 'redux'
 import reducer from './reducers/login.reducer'
+import userReducer from './reducers/user.reducer'
 /* import * as ACTIONS from './actions/actions.js' */
 
 /*STORE*/
 
-export const stateInit = {
-  connected: false,
-  token: '',
-  firstName: '',
-  lastName: '',
-  email: '',
-}
+const rootReducer = combineReducers({
+  userReducer: userReducer,
+  loginReducer: reducer,
+})
+//console.log(rootReducer)
 
-export let store = createStore(reducer, stateInit)
+export let store = createStore(rootReducer)
+//console.log(store.getState())
 
 function App() {
   return (
