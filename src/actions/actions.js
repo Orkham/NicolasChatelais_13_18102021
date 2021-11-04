@@ -7,3 +7,9 @@ export const SIGN_OUT = {
 export const DELETE_USER_DATAS = {
   type: 'DELETE_USER_DATAS',
 }
+export const IS_LOADING = {
+  type: 'IS_LOADING',
+}
+export const GET_USER_DATAS = {
+  type: 'GET_USER_DATAS',
+}

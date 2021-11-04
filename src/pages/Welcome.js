@@ -2,8 +2,10 @@ import Header from '../components/Header'
 import Hero from '../components/Hero'
 import Features from '../components/Features'
 import Footer from '../components/Footer'
+//import { store } from '../App'
 
 export default function WelcomePage() {
+  
   return (
     <div>
       <Header />

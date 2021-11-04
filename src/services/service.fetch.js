@@ -8,14 +8,20 @@ export async function checkUserId(email, password) {
     email: email,
     password: password,
   })
+  //console.log(headers, bodyRequest)
   const response = await fetch('http://localhost:3001/api/v1/user/login', {
     method: 'POST',
     body: bodyRequest,
     headers: headers,
+  }).catch((error) => {
+    throw error
   })
+
   try {
     const userDatas = await response.json()
+    //console.log(userDatas)
     const token = userDatas.body.token
+    console.log(token)
     store.dispatch({
       type: 'SIGN_IN',
       payload: {
@@ -23,17 +29,17 @@ export async function checkUserId(email, password) {
       },
     })
     localStorage.setItem('token', JSON.stringify(token))
-    console.log(store.getState())
+    //console.log(store.getState())
   } catch {
     store.dispatch({ type: 'SIGN_OUT' })
+    //window.location.href = 'http://localhost:3000/'
     alert('Mot de passe ou adresse mail incorrect')
-    console.log(store.getState())
   }
 }
 
 export async function checkUserProfile() {
   const getToken = JSON.parse(localStorage.getItem('token'))
-  console.log(getToken)
+  //console.log(getToken)
   const headers = {
     'Content-type': 'application/json',
     Authorization: 'Bearer ' + getToken,
@@ -44,6 +50,7 @@ export async function checkUserProfile() {
     headers: headers,
   })
   const userProfile = await response.json()
+  //console.log(userProfile)
   store.dispatch({
     type: 'GET_USER_DATAS',
     payload: {
@@ -55,5 +62,6 @@ export async function checkUserProfile() {
       id: userProfile.body.id,
     },
   })
+
   return userProfile
 }

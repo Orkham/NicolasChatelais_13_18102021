@@ -20,7 +20,7 @@ export default function userReducer(state = stateInit, action) {
       }
     case 'DELETE_USER_DATAS':
       return {
-        state,
+        stateInit,
       }
     default:
       return state

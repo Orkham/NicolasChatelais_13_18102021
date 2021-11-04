@@ -2,6 +2,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
+import { checkUserProfile } from '../services/service.fetch'
+
 const StyledHeader = styled.header`
   color: #fff;
   margin-bottom: 2rem;
@@ -19,6 +21,8 @@ const StyledHeader = styled.header`
 `
 
 export default function Title() {
+  checkUserProfile()
+
   const userFirstName = useSelector((state) => state.userReducer.firstName)
   const userLastName = useSelector((state) => state.userReducer.lastName)
   return (
