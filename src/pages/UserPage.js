@@ -6,7 +6,8 @@ import AccountDetails from '../components/AccountsDetails'
 import { checkUserProfile } from '../services/service.fetch'
 
 import { useSelector } from 'react-redux'
-import { store } from '../App'
+//import { store } from '../App'
+import SignInPage from './SignInPage'
 
 const StyledMain = styled.main`
   background-color: #12002b;
@@ -17,11 +18,13 @@ const StyledMain = styled.main`
 export default function UserPage() {
   const isLoadingState = useSelector((state) => state.loginReducer.isLoading)
   const isConnected = useSelector((state) => state.loginReducer.connected)
-  console.log(store.getState())
+  //console.log(store.getState())
   if (isLoadingState) {
     return <h1>Patientez</h1>
   } else if (!isConnected) {
-    return <h1>Vous n'êtes pas connecté.</h1>
+    /*gestion du redirect si mauvais mot de passe*/
+    return <SignInPage />
+    //return <h1>Vous n'êtes pas connecté.</h1>
   } else {
     return (
       <div>

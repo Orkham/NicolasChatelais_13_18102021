@@ -70,10 +70,7 @@ export default function Header() {
             onClick={() => {
               store.dispatch({ type: 'SIGN_OUT' })
               store.dispatch({ type: 'DELETE_USER_DATAS' })
-
-              //history.push('/')
             }}
-            //href="."
             to="/"
           >
             <FontAwesomeIcon icon={faUserCircle}></FontAwesomeIcon>

@@ -65,3 +65,26 @@ export async function checkUserProfile() {
 
   return userProfile
 }
+
+export async function updateUserName(firstNameValue, lastNameValue) {
+  console.log('update')
+  const getToken = JSON.parse(localStorage.getItem('token'))
+  console.log(getToken)
+  const headers = {
+    'Content-type': 'application/json',
+    Authorization: 'Bearer ' + getToken,
+  }
+  console.log(headers)
+  const bodyRequest = {
+    firstName: firstNameValue,
+    lastName: lastNameValue,
+  }
+  console.log(bodyRequest)
+  const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+    method: 'PUT',
+    body: bodyRequest,
+    headers: headers,
+  })
+  console.log(response)
+  //await response.json()
+}

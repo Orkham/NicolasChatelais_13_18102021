@@ -5,12 +5,14 @@ const stateInit = {
   createAt: '',
   updateAt: '',
   id: '',
+  isEditing: false,
 }
 
 export default function userReducer(state = stateInit, action) {
   switch (action.type) {
     case 'GET_USER_DATAS':
       return {
+        ...state,
         email: action.payload.email,
         firstName: action.payload.firstName,
         lastName: action.payload.lastName,
@@ -21,6 +23,18 @@ export default function userReducer(state = stateInit, action) {
     case 'DELETE_USER_DATAS':
       return {
         stateInit,
+      }
+    case 'EDIT_USER_ID':
+      return {
+        ...state,
+        isEditing: true,
+      }
+    case 'NEW_USER_ID':
+      return {
+        ...state,
+        firstName: action.payload.firstName,
+        lastName: action.payload.lastName,
+        isEditing: false,
       }
     default:
       return state

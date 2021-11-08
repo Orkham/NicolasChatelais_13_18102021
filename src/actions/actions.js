@@ -13,3 +13,9 @@ export const IS_LOADING = {
 export const GET_USER_DATAS = {
   type: 'GET_USER_DATAS',
 }
+export const EDIT_USER_ID = {
+  type: 'EDIT_USER_ID',
+}
+export const NEW_USER_ID = {
+  type: 'NEW_USER_ID',
+}
