@@ -27,7 +27,7 @@ export default function userReducer(state = stateInit, action) {
     case 'EDIT_USER_ID':
       return {
         ...state,
-        isEditing: true,
+        isEditing: action.payload.isEditing,
       }
     case 'NEW_USER_ID':
       return {

@@ -47,13 +47,17 @@ function editName(firstName, lastName) {
 
 function saveId() {
   const firstNameValue = !document.getElementById('firstName').value
-    ? !document.getElementById('firstName').placeholder
+    ? document.getElementById('firstName').placeholder
     : document.getElementById('firstName').value
   const lastNameValue = !document.getElementById('lastName').value
     ? document.getElementById('lastName').placeholder
     : document.getElementById('lastName').value
-  console.log(typeof firstNameValue, lastNameValue)
+
   updateUserName(firstNameValue, lastNameValue)
+  store.dispatch({
+    type: 'EDIT_USER_ID',
+    payload: { isEditing: false },
+  })
 }
 
 export default function Title() {
@@ -79,7 +83,10 @@ export default function Title() {
         <button
           className="edit-button"
           onClick={() => {
-            store.dispatch({ type: 'EDIT_USER_ID' })
+            store.dispatch({
+              type: 'EDIT_USER_ID',
+              payload: { isEditing: true },
+            })
           }}
         >
           Edit Name
@@ -89,7 +96,17 @@ export default function Title() {
           <button className="edit-button" onClick={() => saveId()}>
             Save
           </button>
-          <button className="edit-button">Cancel</button>
+          <button
+            className="edit-button"
+            onClick={() =>
+              store.dispatch({
+                type: 'EDIT_USER_ID',
+                payload: { isEditing: false },
+              })
+            }
+          >
+            Cancel
+          </button>
         </div>
       )}
     </StyledHeader>
