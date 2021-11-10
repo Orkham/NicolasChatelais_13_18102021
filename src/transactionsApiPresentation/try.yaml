@@ -1,0 +1,100 @@
+swagger: '2.0'
+info:
+  title: Bank Argent API documentation for transactions 
+  description: Contains all available API endpoints to handle user's transactions
+  version: '1.0.0'
+  termsOfService: 'http://swagger.io/terms/'
+host: localhost:3001
+basePath: /api/v1
+schemes:
+  - http
+paths:
+  /user/transactions:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions Module
+      summary: Transactions
+      description: API for fetching all user's transactions
+      parameters:
+        - in: header
+          type: 'string'
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: loading of all transactions 
+          schema:
+            $ref: '#/definitions/Transactions'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+
+  /user/transactions/transaction{id}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Details Module
+      summary: Transaction
+      description: API for fetching one user's transaction and all its info
+      parameters:
+        - in: header
+          type: 'string'
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+        - in: path
+          type: integer
+          name: id
+          description: Id of transaction to fetch additionnal info from db
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: loading of all informations of the transaction selected 
+          schema:
+            $ref: '#/definitions/TransactionInformations'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+definitions:
+  Transactions:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: array
+        items:
+          $ref: '#/definitions/Transactions'
+
+  TransactionInformations:
+    type: object
+    properties:
+      transactionType:
+        type: string
+        description: transaction type
+        enum: [Electronic, Card, Withdrowing, Debit, Other]
+      category:
+        type: string
+        description: transaction category
+        enum: [Food, Culture, Medical, Tech, Gardening, Fuel, Other]
+      Notes:
+        type: string
+        description: various notes
+  
