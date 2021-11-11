@@ -43,11 +43,11 @@ const StyledHeader = styled.nav`
 `
 
 export default function Header() {
-  //console.log(store.getState())
-  //console.log(JSON.parse(localStorage.getItem('token')))
+  /**
+   * check in the store to verify if the user is connected or not
+   */
   const isUserLoggedIn = useSelector((state) => state.loginReducer.connected)
-  //console.log(isUserLoggedIn)
-  //let history = useHistory()
+
   return (
     <StyledHeader className="main-nav">
       <Link className="main-nav-logo" to="/">

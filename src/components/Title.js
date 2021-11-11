@@ -2,7 +2,6 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { store } from '../App'
-
 import { checkUserProfile, updateUserName } from '../services/service.fetch'
 
 const StyledHeader = styled.header`
@@ -27,7 +26,12 @@ const StyledHeader = styled.header`
     font-size: 1rem;
   }
 `
-
+/**
+ * 
+ * @param {string} firstName 
+ * @param {string} lastName 
+ * @returns display input for editing first-name and last-name
+ */
 function editName(firstName, lastName) {
   return (
     <div>
@@ -45,6 +49,9 @@ function editName(firstName, lastName) {
   )
 }
 
+/**
+ * handling the edition and saving of the new user's id in the database
+ */
 function saveId() {
   const firstNameValue = !document.getElementById('firstName').value
     ? document.getElementById('firstName').placeholder
@@ -60,6 +67,9 @@ function saveId() {
   })
 }
 
+/**
+ * @returns Welcome message and user's last-name and first-name
+ */
 export default function Title() {
   checkUserProfile()
   const isEditing = useSelector((state) => state.userReducer.isEditing)

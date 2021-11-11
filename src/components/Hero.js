@@ -46,6 +46,10 @@ const StyledHero = styled.div`
   }
 `
 
+/**
+ * 
+ * @returns text in the image of the Welcome Page
+ */
 export default function Hero() {
   return (
     <StyledHero>

@@ -29,7 +29,10 @@ const StyledFeature = styled.section`
     margin-bottom: 0.5rem;
   }
 `
-
+/**
+ * 
+ * @returns content for Welcome Page
+ */
 export default function Features() {
   return (
     <StyledFeature>

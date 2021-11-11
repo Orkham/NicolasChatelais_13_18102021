@@ -56,7 +56,9 @@ const StyledAccountsDetails = styled.div`
     }
   }
 `
-
+/**
+ * @returns placeholders for the UserPage (account details)
+ */
 export default function AccountDetails() {
   return (
     <StyledAccountsDetails>

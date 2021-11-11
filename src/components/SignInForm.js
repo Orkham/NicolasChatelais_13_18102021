@@ -59,17 +59,11 @@ const StyledSignInForm = styled.div`
   }
 `
 
-/* function logIn(e) {
-  const usernameValue = document.getElementById('username').value
-  const passwordValue = document.getElementById('password').value
-  e.preventDefault()
-  store.dispatch(ACTIONS.signIn)
-  console.log(store.getState())
-  fetchDatas(usernameValue, passwordValue)
-} */
-
+/**
+ * 
+ * @returns form to handle user's connexion
+ */
 export default function SignInForm(props) {
-  //console.log(props.store.getState())
 
   return (
     <StyledSignInForm>

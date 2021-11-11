@@ -7,7 +7,7 @@ import UserPage from './pages/UserPage'
 import { combineReducers, createStore } from 'redux'
 import reducer from './reducers/login.reducer'
 import userReducer from './reducers/user.reducer'
-/* import * as ACTIONS from './actions/actions.js' */
+
 
 /*STORE*/
 
@@ -15,10 +15,8 @@ const rootReducer = combineReducers({
   userReducer: userReducer,
   loginReducer: reducer,
 })
-//console.log(rootReducer)
 
 export let store = createStore(rootReducer)
-//console.log(store.getState())
 
 function App() {
   return (

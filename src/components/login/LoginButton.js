@@ -1,9 +1,11 @@
 import { checkUserId } from '../../services/service.fetch'
-
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { store } from '../../App'
 
+/**
+ * collect user's inputs for checking connexion
+ */
 async function logIn() {
   const usernameValue = document.getElementById('username').value
   const passwordValue = document.getElementById('password').value
@@ -11,9 +13,11 @@ async function logIn() {
   store.dispatch({
     type: 'IS_LOADING',
   })
-  //console.log(store.getState())
 }
 
+/**
+ * handle user connexion tries and redirect to UserPage component
+ */
 export default function LogInButton() {
   let history = useHistory()
   return (
