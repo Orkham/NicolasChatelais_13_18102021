@@ -70,6 +70,13 @@ export default function Header() {
             onClick={() => {
               store.dispatch({ type: 'SIGN_OUT' })
               store.dispatch({ type: 'DELETE_USER_DATAS' })
+              store.dispatch({
+                type: 'IS_LOGGING_OUT',
+                payload: {
+                  isLoggingOut: true,
+                },
+              })
+              console.log(store.getState())
             }}
             to="/"
           >

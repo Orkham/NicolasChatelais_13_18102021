@@ -2,6 +2,7 @@ const stateInit = {
   connected: false,
   token: '',
   isLoading: false,
+  isLoggingOut: false,
 }
 
 export default function loginReducer(state = stateInit, action) {
@@ -20,6 +21,11 @@ export default function loginReducer(state = stateInit, action) {
       return {
         ...state,
         isLoading: !state.isLoading,
+      }
+    case 'IS_LOGGING_OUT':
+      return {
+        ...state,
+        isLoggingOut: action.payload.isLoggingOut,
       }
     default:
       return state
