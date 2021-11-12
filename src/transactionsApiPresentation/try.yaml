@@ -66,19 +66,18 @@ paths:
         '500':
           description: Internal Server Error
 
-/***A retravailler !!! ***/
-post:
+    post:
       security:
         - Bearer: []
       tags:
-        - Transaction Module
-      summary: Transactions API
-      description: Request for adding Transaction's additional informations
+        - Transaction Details Module
+      summary: Transactions 
+      description: API for adding transaction's additional informations
       parameters:
         - in: path
           type: integer
-          name: transactionId
-          description: Id of transaction
+          name: id
+          description: Id of transaction to fetch additionnal info from db
           required: true
         - in: header
           type: 'string'
@@ -87,9 +86,9 @@ post:
           required: true
         - in: body
           name: body
-          description: addtionnal informations of created transcation
+          description: addtionnal informations for this transcation
           schema:
-            $ref: '#/definitions/TransactionAdditionalInfos'
+            $ref: '#/definitions/TransactionInformations'
           required: true
       produces:
         - application/json
@@ -109,14 +108,14 @@ post:
       security:
         - Bearer: []
       tags:
-        - Transaction Module
-      summary: Transactions API
-      description: Request for modifying Transaction's additional informations
+        - Transaction Details Module
+      summary: Transactions 
+      description: API for editing transaction's informations
       parameters:
         - in: path
           type: integer
-          name: transactionId
-          description: Id of transaction
+          name: id
+          description: Id of transaction to fetch additionnal info from db
           required: true
         - in: header
           type: 'string'
@@ -125,7 +124,7 @@ post:
           required: true
         - in: body
           name: body
-          description: addtionnal informations of created transcation
+          description: addtionnal informations of transcation
           schema:
             $ref: '#/definitions/TransactionAdditionalInfos'
           required: true
@@ -135,7 +134,7 @@ post:
         - application/json
       responses:
         '200':
-          description: Transaction additional informations modified successully
+          description: Transaction's informations edited successfully
           schema:
             $ref: '#/definitions/ApiResponseAdditionalInfos'
         '400':
@@ -147,14 +146,14 @@ post:
       security:
         - Bearer: []
       tags:
-        - Transaction Module
-      summary: Transactions API
-      description: Request for deleting Transaction's additional informations
+        - Transaction Details Module
+      summary: Transactions 
+      description: API for deleting Transaction's informations
       parameters:
         - in: path
           type: integer
-          name: transactionId
-          description: Id of transaction
+          name: id
+          description: Id of transaction to fetch additionnal info from db
           required: true
         - in: header
           type: 'string'
@@ -167,7 +166,7 @@ post:
         - application/json
       responses:
         '200':
-          description: Transaction additional informations deleted successully
+          description: Transaction informations deleted successfully
           schema:
             type: object
             properties:
@@ -177,8 +176,6 @@ post:
           description: Invalid Fields
         '500':        
           description: Internal Server Error
-/*** FIN ***/
-
 
 securityDefinitions:
   Bearer:
@@ -212,4 +209,37 @@ definitions:
       Notes:
         type: string
         description: various notes
+
+  TransactionAdditionalInfos:
+    type: object
+    properties:
+      transactionType:
+        type: string
+        description: transaction type
+        enum: [Electronic, Card, Withdrowing, Debit, Other]
+      category:
+        type: string
+        description: transaction category
+        enum: [Food, Culture, Medical, Tech, Gardening, Fuel, Other]
+      Notes:
+        type: string
+        description: various notes
+
+  ApiResponseAdditionalInfos:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        $ref: '#/definitions/TransactionAdditionalInfos'
+
+  ApiResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
   
