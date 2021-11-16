@@ -15,7 +15,7 @@ paths:
         - Bearer: []
       tags:
         - Transactions Module
-      summary: Transactions
+      summary: List of all Transactions
       description: API for fetching all user's transactions
       parameters:
         - in: header
@@ -35,13 +35,44 @@ paths:
         '500':
           description: Internal Server Error
 
+  /user/transactions/detailedView/transaction{id}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Detailed View
+      summary: Detailed View of a transaction in a new page(with all informations and notes)
+      description: API for fetching one user's transaction and all its informations and notes
+      parameters:
+        - in: header
+          type: 'string'
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+        - in: path
+          type: integer
+          name: id
+          description: Id of transaction to fetch all informations and notes from db
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: loading of all informations of the transaction selected 
+          schema:
+            $ref: '#/definitions/TransactionInformations'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+
   /user/transactions/transaction{id}:
     get:
       security:
         - Bearer: []
       tags:
         - Transaction Details Module
-      summary: Transaction
+      summary: Transaction's Additional Information
       description: API for fetching one user's transaction and all its info
       parameters:
         - in: header
@@ -71,7 +102,7 @@ paths:
         - Bearer: []
       tags:
         - Transaction Details Module
-      summary: Transactions 
+      summary: Adding Transaction's Additional Informations 
       description: API for adding transaction's additional informations
       parameters:
         - in: path
@@ -109,7 +140,7 @@ paths:
         - Bearer: []
       tags:
         - Transaction Details Module
-      summary: Transactions 
+      summary: Editing Transaction's Additional Informations
       description: API for editing transaction's informations
       parameters:
         - in: path
@@ -147,13 +178,13 @@ paths:
         - Bearer: []
       tags:
         - Transaction Details Module
-      summary: Transactions 
+      summary: Deleting Transaction's Additional Informations 
       description: API for deleting Transaction's informations
       parameters:
         - in: path
           type: integer
           name: id
-          description: Id of transaction to fetch additionnal info from db
+          description: Id of transaction to delete its info from db
           required: true
         - in: header
           type: 'string'

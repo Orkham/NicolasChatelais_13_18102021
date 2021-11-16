@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import UserPage from './UserPage'
 import { store } from '../App'
 
-function logoutConfirmation() {
+/* function logoutConfirmation() {
   console.log('déconnexion en cours')
   setTimeout(() => {
     store.dispatch({
@@ -23,17 +23,17 @@ function logoutConfirmation() {
 
 function Band(props) {
   return <div display={props.display}>Vous êtes maintenant déconnecté.</div>
-}
+} */
 
 export default function WelcomePage() {
   const isUserLoggedIn = useSelector((state) => state.loginReducer.connected)
-  const isLoading = useSelector((state) => state.loginReducer.isLoading)
+  //const isLoading = useSelector((state) => state.loginReducer.isLoading)
   console.log(store.getState())
   return (
     <div>
       {!isUserLoggedIn ? (
         <div>
-          {isLoading ? logoutConfirmation() : console.log('welcome')}
+          {/* {isLoading ? logoutConfirmation() : console.log('welcome')} */}
           <Header />
           <Hero />
           <Features />
