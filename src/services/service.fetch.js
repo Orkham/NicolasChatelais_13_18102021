@@ -84,9 +84,9 @@ export async function updateUserName(firstNameValue, lastNameValue) {
   
 }
 
-export function isConnected() {
+/* export function isConnected() {
   const getToken = JSON.parse(localStorage.getItem('token'))
   if (getToken !== null) {
     console.log('coucou')
   }
-}
+} */

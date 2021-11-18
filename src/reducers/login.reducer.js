@@ -15,17 +15,15 @@ export default function loginReducer(state = stateInit, action) {
       }
     case 'SIGN_OUT':
       return {
-        stateInit,
+        connected: false,
+        token: '',
+        isLoading: false,
+        isLoggingOut: true,
       }
     case 'IS_LOADING':
       return {
         ...state,
         isLoading: !state.isLoading,
-      }
-    case 'IS_LOGGING_OUT':
-      return {
-        ...state,
-        isLoggingOut: action.payload.isLoggingOut,
       }
     default:
       return state

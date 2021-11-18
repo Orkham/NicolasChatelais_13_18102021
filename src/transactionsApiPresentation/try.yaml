@@ -41,7 +41,7 @@ paths:
         - Bearer: []
       tags:
         - Detailed View
-      summary: Detailed View of a transaction in a new page(with all informations and notes)
+      summary: Detailed View of a transaction in a new view 
       description: API for fetching one user's transaction and all its informations and notes
       parameters:
         - in: header
