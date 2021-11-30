@@ -63,8 +63,7 @@ const StyledSignInForm = styled.div`
  * 
  * @returns form to handle user's connexion
  */
-export default function SignInForm(props) {
-
+export default function SignInForm() {
   return (
     <StyledSignInForm>
       <main className="bg-dark">

@@ -7,7 +7,7 @@ export default function SignInPage(props) {
   return (
     <div>
       <Header />
-      <SignInForm store={props.store} />
+      <SignInForm />
       <Footer />
     </div>
   )

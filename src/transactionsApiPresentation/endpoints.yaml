@@ -119,7 +119,7 @@ paths:
           name: body
           description: addtionnal informations for this transcation
           schema:
-            $ref: '#/definitions/TransactionInformations'
+            $ref: '#/definitions/TransactionAdditionalInfos'
           required: true
       produces:
         - application/json
@@ -221,10 +221,16 @@ definitions:
         type: integer
       message:
         type: string
-      body:
-        type: array
-        items:
-          $ref: '#/definitions/Transactions'
+      description:
+        type: string
+        description: transaction description
+      amount:
+        type: number
+        description: transaction amount
+      balance:
+        type: number
+        description: account balance after transaction
+      
 
   TransactionInformations:
     type: object
@@ -240,6 +246,12 @@ definitions:
       Notes:
         type: string
         description: various notes
+      description:
+        type: string
+        description: transaction description
+      amount:
+        type: number
+        description: transaction amount
 
   TransactionAdditionalInfos:
     type: object

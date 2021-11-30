@@ -1,5 +1,11 @@
 import { store } from '../App'
 
+
+/**
+ * check the validity between identifier and password then create a token and save it in the local-storage and redux-store
+ * @param {string} email user's identifier
+ * @param {string} password user's password
+ */
 export async function checkUserId(email, password) {
   const headers = {
     'Content-type': 'application/json',
@@ -20,7 +26,6 @@ export async function checkUserId(email, password) {
   try {
     const userDatas = await response.json()
     const token = userDatas.body.token
-    console.log(token)
     store.dispatch({
       type: 'SIGN_IN',
       payload: {
@@ -34,6 +39,10 @@ export async function checkUserId(email, password) {
   }
 }
 
+/**
+ * 
+ * @returns the user's profile to create the user's page if there's a token previously created in the local-storage
+ */
 export async function checkUserProfile() {
   const getToken = JSON.parse(localStorage.getItem('token'))
   const headers = {
@@ -62,8 +71,13 @@ export async function checkUserProfile() {
   return userProfile
 }
 
+
+/**
+ * save the new user's identity in the db
+ * @param {string} firstNameValue 
+ * @param {string} lastNameValue 
+ */
 export async function updateUserName(firstNameValue, lastNameValue) {
-  
   const getToken = JSON.parse(localStorage.getItem('token'))
 
   const headers = {
@@ -81,12 +95,5 @@ export async function updateUserName(firstNameValue, lastNameValue) {
     body: bodyRequest,
     headers: headers,
   })
-  
 }
 
-/* export function isConnected() {
-  const getToken = JSON.parse(localStorage.getItem('token'))
-  if (getToken !== null) {
-    console.log('coucou')
-  }
-} */

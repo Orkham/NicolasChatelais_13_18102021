@@ -42,10 +42,13 @@ const StyledHeader = styled.nav`
   }
 `
 
+
+
 export default function Header() {
   /**
    * check in the store to verify if the user is connected or not
    */
+
   const isUserLoggedIn = useSelector((state) => state.loginReducer.connected)
 
   return (
@@ -70,7 +73,6 @@ export default function Header() {
             onClick={() => {
               store.dispatch({ type: 'SIGN_OUT' })
               store.dispatch({ type: 'DELETE_USER_DATAS' })
-              console.log(store.getState())
             }}
             to="/"
           >
